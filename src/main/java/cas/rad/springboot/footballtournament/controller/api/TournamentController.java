@@ -1,7 +1,8 @@
-package cas.rad.springboot.footballtournament.controller;
+package cas.rad.springboot.footballtournament.controller.api;
 
 import cas.rad.springboot.footballtournament.dto.TournamentCreationDto;
 import cas.rad.springboot.footballtournament.dto.TournamentResponseDto;
+import cas.rad.springboot.footballtournament.dto.TournamentUpdateDto;
 import cas.rad.springboot.footballtournament.service.TournamentService;
 
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,7 @@ import java.util.Optional;
 
 @RestController
 
-@RequestMapping("tournament")
+@RequestMapping("tournamentc")
 @RequiredArgsConstructor
 public class TournamentController {
     private final TournamentService tournamentService;
@@ -44,11 +45,28 @@ public TournamentResponseDto create(@RequestBody TournamentCreationDto tournamen
         }
 
     }
-
+/*
     @GetMapping("/list")
     public String listTournaments(Model model) {
         List<TournamentResponseDto> tournaments = tournamentService.getAll();
         model.addAttribute("tournaments", tournaments);
         return "list"; // Return the name of your Thymeleaf template
     }
+
+ */
+
+    // Tournament update
+    /*
+    @PutMapping(value = "{id}", consumes =  "application/json", produces = "application/json")
+    public TournamentResponseDto update(@RequestBody TournamentUpdateDto dto, @PathVariable Long id){
+        Optional<TournamentResponseDto> tournament = tournamentService.update(dto,id);
+        if(tournament.isPresent()){
+            return tournament.get();
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Phone not found");
+        }
+    }
+
+     */
+
 }

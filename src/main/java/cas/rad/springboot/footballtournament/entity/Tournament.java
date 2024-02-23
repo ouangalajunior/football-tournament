@@ -38,5 +38,13 @@ public class Tournament {
 
     // Define relationship with matches in the tournament
     @OneToMany(mappedBy = "tournament")
-    private List<Match> matches;
+    private List<Match> matches = new ArrayList<>();
+
+    public Tournament(String name, String location, String description, LocalDate startDate, LocalDate endDate) {
+        this.name = name;
+        this.location = location;
+        this.description = description;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
 }

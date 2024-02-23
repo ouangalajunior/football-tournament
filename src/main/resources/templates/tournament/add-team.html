@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Add Teams to Tournament</title>
 </head>
 <body>
-$END$
+<h2>Add Teams to Tournament</h2>
+
+<!-- Display tournament details -->
+<p>Tournament Name: <span th:text="${tournament.name}"></span></p>
+
+<!-- Display available teams to add to the tournament -->
+<form action="/tournament/{tournamentId}/matches/create" method="post" th:action="@{'/tournament/' + ${tournament.id} + '/matches/create'}">
+    <label for="teams">Select Teams to Add:</label><br/>
+    <select id="teams" name="teamIds" multiple="multiple">
+        <option th:each="team : ${availableTeams}"
+                th:value="${team.id}"
+                th:text="${team.name}"></option>
+    </select>
+    <br/>
+
+    <button type="submit">Add Teams</button>
+</form>
 </body>
 </html>

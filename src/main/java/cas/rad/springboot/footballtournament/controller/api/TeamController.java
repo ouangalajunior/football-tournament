@@ -1,9 +1,7 @@
-package cas.rad.springboot.footballtournament.controller;
+package cas.rad.springboot.footballtournament.controller.api;
 
 import cas.rad.springboot.footballtournament.dto.TeamCreationDto;
 import cas.rad.springboot.footballtournament.dto.TeamResponseDto;
-import cas.rad.springboot.footballtournament.dto.TournamentCreationDto;
-import cas.rad.springboot.footballtournament.dto.TournamentResponseDto;
 import cas.rad.springboot.footballtournament.service.TeamService;
 
 import lombok.RequiredArgsConstructor;

@@ -21,4 +21,12 @@ public class MatchResult {
     //Define Relationship with match
     @OneToOne
     private Match match;
+
+    public MatchResult(int homeTeamScore, int awayTeamScore, Match match) {
+        this.homeTeamScore =homeTeamScore;
+        this.awayTeamScore = awayTeamScore;
+        this.match = match;
+    }
+
+
 }

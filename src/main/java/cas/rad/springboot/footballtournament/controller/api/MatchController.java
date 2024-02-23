@@ -1,4 +1,4 @@
-package cas.rad.springboot.footballtournament.controller;
+package cas.rad.springboot.footballtournament.controller.api;
 
 import cas.rad.springboot.footballtournament.dto.MatchCreattionDto;
 import cas.rad.springboot.footballtournament.dto.MatchResponseDto;

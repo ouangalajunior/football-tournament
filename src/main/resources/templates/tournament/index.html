@@ -7,14 +7,19 @@
 </head>
 <body>
 <div class="container">
+
 <h1>Tournament List</h1>
+    <div>
+        <a class="btn btn-primary btn-sm"
+           th:href = "@{/tournament/create}">Create Tournament</a>
+    </div>
 <table>
     <thead>
     <tr>
-        <th>ID</th>
+
         <th>Name</th>
         <th>Location</th>
-        <th>Description</th>
+
         <th>Start Date</th>
         <th>End Date</th>
         <th>End Date</th>
@@ -23,18 +28,20 @@
     </thead>
     <tbody>
     <tr th:each="tournament : ${tournaments}">
-        <td th:text="${tournament.id}"></td>
+
         <td th:text="${tournament.name}"></td>
         <td th:text="${tournament.location}"></td>
-        <td th:text="${tournament.description}"></td>
+
         <td th:text="${tournament.startDate}"></td>
         <td th:text="${tournament.endDate}"></td>
         <td style="white-space: nowrap">
+            <a class="btn btn-info btn-sm"
+               th:href = "@{/tournament/{id}(id=${tournament.id})}">Details</a>
             <a class="btn btn-primary btn-sm"
-               th:href = "@{/tournaments/update/{id}(id=${tournament.id})}">Edit</a>
+               th:href = "@{/tournament/edit/{id}(id=${tournament.id})}">Edit</a>
 
             <a class="btn btn-danger btn-sm"
-               th:href = "@{/tournaments/delete/{id}(id=${tournament.id})}"
+               th:href = "@{/tournament/delete/{id}(id=${tournament.id})}"
                onclick="return confirm('Are you sure, you want to delete this tournament?')">Delete</a>
 
 
@@ -44,6 +51,18 @@
     </tr>
     </tbody>
 </table>
+</div>
+
+<div class="container">
+    <div>
+        <a class="btn btn-primary btn-sm"
+           th:href = "@{/team/create}">Create Team </a>
+    </div>
+
+    <div>
+        <a class="btn btn-primary btn-sm"
+           th:href = "@{/team/index}">Show all registered team</a>
+    </div>
 </div>
 </body>
 </html>

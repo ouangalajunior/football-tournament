@@ -33,4 +33,10 @@ public class Team {
 
     @OneToMany(mappedBy = "awayTeam")
     private List<Match> awayMatches;
+
+    public Team(String name, String city, String logoUrl) {
+        this.name = name;
+        this.city = city;
+        this.logoUrl = logoUrl;
+    }
 }

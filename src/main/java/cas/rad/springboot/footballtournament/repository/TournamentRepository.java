@@ -1,2 +1,24 @@
-package cas.rad.springboot.footballtournament.repository;public class TournamentRepository {
+package cas.rad.springboot.footballtournament.repository;
+
+import cas.rad.springboot.footballtournament.entity.Match;
+import cas.rad.springboot.footballtournament.entity.Tournament;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public interface TournamentRepository extends JpaRepository<Tournament, Long> {
+   /*
+    @Query("SELECT t FROM Tournament t JOIN FETCH t.teams WHERE t.id = :tournamentId")
+    Optional<Tournament> findByIdWithTeams(@Param("tournamentId") Long tournamentId);
+
+    @Query("SELECT t FROM Tournament t JOIN FETCH t.teams")
+    List<Tournament> findAllWithTeams();
+
+    */
+
 }

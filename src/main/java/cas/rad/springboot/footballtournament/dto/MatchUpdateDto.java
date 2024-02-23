@@ -1,2 +1,4 @@
-package cas.rad.springboot.footballtournament.dto;public class MatchUpdateDto {
+package cas.rad.springboot.footballtournament.dto;
+
+public class MatchUpdateDto {
 }
