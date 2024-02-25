@@ -43,7 +43,7 @@ public class TournamentService {
 
     //Tournament update
 
-    public Optional<TournamentResponseDto> update(TournamentResponseDto dto, Long id){
+    public Optional<TournamentResponseDto> update(TournamentUpdateDto dto, Long id){
         Optional<Tournament> tournamentOptional = tournamentRepository.findById(id);
 
         if(tournamentOptional.isEmpty()){
@@ -209,9 +209,28 @@ public class TournamentService {
                         match.getHomeTeam().getName(),
                         match.getAwayTeam().getId(),
                         match.getAwayTeam().getName(),
-                        match.getTournament().getId()))
+                        match.getTournament().getId(),
+                        match.getHomeTeamScore(),
+                        match.getAwayTeamScore()
+                ))
                 .toList();
 
+    }
+
+    public void removeTeamFromTournament(Long tournamentId, Long teamId) {
+        // Retrieve the tournament entity by its ID
+        Tournament tournament = tournamentRepository.findById(tournamentId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid tournament ID"));
+
+        // Retrieve the team entity by its ID
+        Team team = teamRepository.findById(teamId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid team ID"));
+
+        // Remove the team from the tournament
+        tournament.removeTeam(team);
+
+        // Save the updated tournament entity
+        tournamentRepository.save(tournament);
     }
 
 }

@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Entity
@@ -15,6 +16,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Tournament {
 
     @Id
@@ -46,5 +48,11 @@ public class Tournament {
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    // Method to remove a team from the tournament
+    public void removeTeam(Team team) {
+        teams.remove(team);
+        team.getTournaments().remove(this); // Ensure to remove the tournament from the team's list as well
     }
 }

@@ -21,8 +21,12 @@ public class MatchResponseDto {
     private String awayTeamName;
     private Long awayTeamId;
     private Long tournamentId;
+    private int homeTeamScore;
+    private int awayTeamScore;
 
-    public MatchResponseDto(Long id, LocalDate date, LocalTime startTime, String location, Long homeTeamId, String homeTeamName, Long awayTeamId, String awayTeamName, Long tournamentId) {
+    public MatchResponseDto(Long id, LocalDate date, LocalTime startTime,
+                            String location, Long homeTeamId, String homeTeamName,
+                            Long awayTeamId, String awayTeamName, Long tournamentId, int homeTeamScore, int awayTeamScore) {
         this.id = id;
         this.date = date;
         this.startTime = startTime;
@@ -32,6 +36,8 @@ public class MatchResponseDto {
         this.awayTeamId = awayTeamId;
        this.awayTeamName = awayTeamName;
         this.tournamentId = tournamentId;
+        this.homeTeamScore = homeTeamScore;
+        this.awayTeamScore = awayTeamScore;
     }
 
     public static MatchResponseDto fromEntity(Match match){
@@ -44,7 +50,9 @@ public class MatchResponseDto {
                 match.getHomeTeam().getName(),
                 match.getAwayTeam().getId(),
                 match.getAwayTeam().getName(),
-                match.getTournament().getId()
+                match.getTournament().getId(),
+                match.getHomeTeamScore(),
+                match.getAwayTeamScore()
         );
     }
 }

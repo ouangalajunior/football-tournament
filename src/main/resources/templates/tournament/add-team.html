@@ -3,24 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Teams to Tournament</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-<h2>Add Teams to Tournament</h2>
+<div class="container">
+    <h2>Add Teams to Tournament</h2>
 
-<!-- Display tournament details -->
-<p>Tournament Name: <span th:text="${tournament.name}"></span></p>
+    <!-- Display tournament details -->
+    <p>Tournament Name: <span th:text="${tournament.name}"></span></p>
 
-<!-- Display available teams to add to the tournament -->
-<form action="/tournament/{tournamentId}/matches/create" method="post" th:action="@{'/tournament/' + ${tournament.id} + '/matches/create'}">
-    <label for="teams">Select Teams to Add:</label><br/>
-    <select id="teams" name="teamIds" multiple="multiple">
-        <option th:each="team : ${availableTeams}"
-                th:value="${team.id}"
-                th:text="${team.name}"></option>
-    </select>
-    <br/>
+    <div>
+        <a class="btn btn-primary btn-sm"
+           th:href = "@{/team/create}">Create Team </a>
+        <p>If not in the list below</p>
+    </div>
 
-    <button type="submit">Add Teams</button>
-</form>
+    <!-- Display available teams to add to the tournament -->
+    <form action="/tournament/{tournamentId}/teams/add" method="post" th:action="@{'/tournament/' + ${tournament.id} + '/teams/add'}">
+        <div class="mb-3">
+            <label for="teams" class="form-label">Select Teams to Add:</label><br/>
+            <select id="teams" name="teamIds" class="form-select" multiple="multiple">
+                <option th:each="team : ${availableTeams}"
+                        th:value="${team.id}"
+                        th:text="${team.name}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Teams</button>
+    </form>
+</div>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-fgf2Vt6Unu1n0zbpD6tAoWXVsC+ERFJvRuo0GN6vf8Jm8ALVVEJqI4ILgqEt10f3" crossorigin="anonymous"></script>
 </body>
 </html>
+

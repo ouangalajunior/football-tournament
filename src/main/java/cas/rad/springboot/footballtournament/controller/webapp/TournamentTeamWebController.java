@@ -44,8 +44,15 @@ public class TournamentTeamWebController {
                                        @RequestParam List<Long> teamIds) {
         // Add selected teams to the tournament
         tournamentService.addTeamsToTournament(tournamentId, teamIds);
-        return "redirect:/tournament/index" ;
+        return "redirect:/tournament/" + tournamentId ;
     }
 
+    // Remove team from the tournament
+    @GetMapping("/remove/{teamId}")
+    public String removeTeamFromTournament(@PathVariable("tournamentId") Long tournamentId,
+                                           @PathVariable("teamId") Long teamId) {
+        tournamentService.removeTeamFromTournament(tournamentId, teamId);
+        return "redirect:/tournament/" + tournamentId;
+    }
 
 }

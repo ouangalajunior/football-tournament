@@ -1,9 +1,6 @@
 package cas.rad.springboot.footballtournament.service;
 
-import cas.rad.springboot.footballtournament.dto.MatchCreattionDto;
-import cas.rad.springboot.footballtournament.dto.MatchResponseDto;
-import cas.rad.springboot.footballtournament.dto.TournamentCreationDto;
-import cas.rad.springboot.footballtournament.dto.TournamentResponseDto;
+import cas.rad.springboot.footballtournament.dto.*;
 import cas.rad.springboot.footballtournament.entity.Match;
 import cas.rad.springboot.footballtournament.entity.Team;
 import cas.rad.springboot.footballtournament.entity.Tournament;
@@ -79,6 +76,20 @@ public class MatchService {
                 .stream()
                 .map(MatchResponseDto::fromEntity)
                 .toList();
+    }
+
+
+    public Optional<MatchResponseDto> update(MatchUpdateDto dto, Long id){
+        Optional<Match> matchOptional= matchRepository.findById(id);
+        if(matchOptional.isEmpty()){
+            return Optional.empty();
+        }
+        Match match = matchOptional.get();
+        match.setHomeTeamScore(dto.getHomeTeamScore());
+        match.setAwayTeamScore(dto.getAwayTeamScore());
+
+        matchRepository.save(match);
+        return Optional.of(MatchResponseDto.fromEntity(match));
     }
 
     public List<Match> getAllMatchesWithTeamNamesAndScores() {

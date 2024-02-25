@@ -1,17 +1,16 @@
 package cas.rad.springboot.footballtournament.controller.webapp;
 
-import cas.rad.springboot.footballtournament.dto.MatchCreattionDto;
-import cas.rad.springboot.footballtournament.dto.TeamResponseDto;
-import cas.rad.springboot.footballtournament.dto.TournamentCreationDto;
-import cas.rad.springboot.footballtournament.dto.TournamentResponseDto;
+import cas.rad.springboot.footballtournament.dto.*;
 import cas.rad.springboot.footballtournament.service.MatchService;
 import cas.rad.springboot.footballtournament.service.TeamService;
 import cas.rad.springboot.footballtournament.service.TournamentService;
+import org.apache.tomcat.util.modeler.BaseAttributeFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/tournament/{tournamentId}/matches")
@@ -54,6 +53,58 @@ public class MatchWebController {
         tournamentService.addMatchToTournament(tournamentId, match);
         return "redirect:/tournament/" + tournamentId;
     }
+
+    /*
+    @GetMapping("/edit/{id}")
+    public String showUpdateForm(@PathVariable Long id, @PathVariable("tournamentId") Long tournamentId, Model model){
+        // Retrieve the match details
+        MatchResponseDto match = matchService.getOne(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid match id: " + id));
+
+        // Add match details and tournamentId to the model
+        model.addAttribute("match", match);
+        model.addAttribute("tournamentId", tournamentId);
+        model.addAttribute("matchId", id);
+
+
+        // Return the name of the Thymeleaf template for the edit form
+        return "match/edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String updateMatch(@ModelAttribute MatchUpdateDto dto, @PathVariable Long id, @PathVariable("tournamentId") Long tournamentId){
+        // Update the match details
+        matchService.update(dto, id);
+
+        // Redirect to the tournament details page
+        return "redirect:/tournament/" + tournamentId;
+    }
+
+
+     */
+    @GetMapping("/edit/{id}")
+    public String showUpdateForm(@PathVariable Long id, @PathVariable("tournamentId") Long tournamentId, Model model){
+        MatchResponseDto match = matchService.getOne(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid match id: " + id));
+
+        // Add match details and tournamentId to the model
+        model.addAttribute("match", match);
+        model.addAttribute("tournamentId", tournamentId);
+        model.addAttribute("matchId", id);
+        model.addAttribute("matchUpdateDto", new MatchUpdateDto()); // Ensure the model contains an empty MatchUpdateDto object
+
+        return "match/edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String updateMatch(@ModelAttribute("matchUpdateDto") MatchUpdateDto dto, @PathVariable Long id, @PathVariable("tournamentId") Long tournamentId){
+        matchService.update(dto, id);
+
+        // Redirect to the tournament details page
+        return "redirect:/tournament/" + tournamentId;
+    }
+
+
 
 }
 

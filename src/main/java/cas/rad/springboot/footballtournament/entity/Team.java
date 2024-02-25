@@ -39,4 +39,7 @@ public class Team {
         this.city = city;
         this.logoUrl = logoUrl;
     }
+
+
+
 }

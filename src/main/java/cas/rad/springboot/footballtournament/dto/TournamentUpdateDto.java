@@ -1,13 +1,14 @@
 package cas.rad.springboot.footballtournament.dto;
 
 import cas.rad.springboot.footballtournament.entity.Tournament;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class TournamentUpdateDto {
     private String name;
     private String location;

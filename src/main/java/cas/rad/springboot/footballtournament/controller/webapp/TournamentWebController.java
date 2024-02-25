@@ -2,6 +2,7 @@ package cas.rad.springboot.footballtournament.controller.webapp;
 
 import cas.rad.springboot.footballtournament.dto.TournamentCreationDto;
 import cas.rad.springboot.footballtournament.dto.TournamentResponseDto;
+import cas.rad.springboot.footballtournament.dto.TournamentUpdateDto;
 import cas.rad.springboot.footballtournament.service.TeamService;
 import cas.rad.springboot.footballtournament.service.TournamentService;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,7 @@ public class TournamentWebController {
         this.tournamentService = tournamentService;
     }
 
-    @GetMapping("/index")
+    @GetMapping({"", "/"})
     public String getAllTournaments(Model model){
         model.addAttribute("tournaments", tournamentService.getAll());
         return "tournament/index";
@@ -42,7 +43,7 @@ public class TournamentWebController {
     @PostMapping("/create")
     public String createTournament(@ModelAttribute("tournament") TournamentCreationDto tournament) {
         tournamentService.create(tournament);
-        return "redirect:/tournament/index";
+        return "redirect:/tournament/";
     }
 
     @GetMapping("/edit/{id}")
@@ -55,20 +56,20 @@ public class TournamentWebController {
 
 
     @PostMapping("/edit/{id}")
-    public String updateTournament(@ModelAttribute TournamentResponseDto dto,@PathVariable Long id) {
-        Optional<TournamentResponseDto> tournament = tournamentService.update(dto,id);
+    public String updateTournament(@ModelAttribute TournamentUpdateDto dto, @PathVariable Long id) {
+        tournamentService.update(dto,id);
        // model.addAttribute("tournament", tournament);
 
         //Optional<TournamentResponseDto> tournament = tournamentService.update(dto,id);
         //tournamentDto.setId(id); // Ensure the ID is set
         //tournamentService.update(id);
-        return "redirect:/tournament/index";
+        return "redirect:/tournament/";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteTournament(@PathVariable Long id) {
         tournamentService.deleteOne(id);
-        return "redirect:/tournament/index";
+        return "redirect:/tournament/";
     }
 
     //Add teams to the tournament

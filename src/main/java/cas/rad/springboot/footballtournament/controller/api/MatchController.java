@@ -2,6 +2,7 @@ package cas.rad.springboot.footballtournament.controller.api;
 
 import cas.rad.springboot.footballtournament.dto.MatchCreattionDto;
 import cas.rad.springboot.footballtournament.dto.MatchResponseDto;
+import cas.rad.springboot.footballtournament.dto.MatchUpdateDto;
 import cas.rad.springboot.footballtournament.entity.Match;
 import cas.rad.springboot.footballtournament.service.MatchService;
 import lombok.RequiredArgsConstructor;
@@ -44,6 +45,12 @@ public class MatchController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Match not found");
         }
 
+    }
+
+    @PutMapping("/{id}")
+    public MatchResponseDto updateMatch(@PathVariable Long id, @RequestBody MatchUpdateDto dto) {
+       Optional<MatchResponseDto> match = matchService.update(dto,id);
+        return match.get();
     }
 
     @GetMapping(value="/with-team-names", produces = "application/json")
