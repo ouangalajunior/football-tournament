@@ -2,7 +2,6 @@ package cas.rad.springboot.footballtournament.dto;
 import cas.rad.springboot.footballtournament.entity.Match;
 import cas.rad.springboot.footballtournament.entity.Team;
 import cas.rad.springboot.footballtournament.entity.Tournament;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +11,7 @@ import java.time.LocalTime;
 @Getter
 @Setter
 
-public class MatchCreattionDto {
+public class MatchCreationDto {
     private String description;
     private LocalDate date;
     private LocalTime startTime;

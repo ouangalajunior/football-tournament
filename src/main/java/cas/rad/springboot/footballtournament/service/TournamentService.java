@@ -106,7 +106,7 @@ public class TournamentService {
                 .toList();
     }
 
-    public Optional<TournamentResponseDto> addMatchToTournament(Long tournamentId, MatchCreattionDto matchDto) {
+    public Optional<TournamentResponseDto> addMatchToTournament(Long tournamentId, MatchCreationDto matchDto) {
         Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournamentId);
 
         if (tournamentOptional.isEmpty()) {
@@ -202,6 +202,7 @@ public class TournamentService {
         // Convert teams to DTOs
         return matches.stream()
                 .map(match -> new MatchResponseDto(match.getId(),
+                        match.getDescription(),
                         match.getDate(),
                         match.getStartTime(),
                         match.getLocation(),
@@ -232,5 +233,7 @@ public class TournamentService {
         // Save the updated tournament entity
         tournamentRepository.save(tournament);
     }
+
+
 
 }

@@ -37,7 +37,7 @@ public class MatchService {
 
      */
 
-    public MatchResponseDto create(MatchCreattionDto dto) {
+    public MatchResponseDto create(MatchCreationDto dto) {
         // Retrieve home team, away team, and tournament from database using IDs
         Optional<Team> homeTeamOptional = teamRepository.findById(dto.getHomeTeamId());
         Optional<Team> awayTeamOptional = teamRepository.findById(dto.getAwayTeamId());
@@ -79,7 +79,7 @@ public class MatchService {
     }
 
 
-    public Optional<MatchResponseDto> update(MatchUpdateDto dto, Long id){
+    public Optional<MatchResponseDto> updateScore(MatchUpdateScoreDto dto, Long id){
         Optional<Match> matchOptional= matchRepository.findById(id);
         if(matchOptional.isEmpty()){
             return Optional.empty();
@@ -90,6 +90,27 @@ public class MatchService {
 
         matchRepository.save(match);
         return Optional.of(MatchResponseDto.fromEntity(match));
+    }
+
+    public Optional<MatchResponseDto> updateMatch(MatchUpdateDto dto, Long id){
+        Optional<Match> matchOptional= matchRepository.findById(id);
+        if(matchOptional.isEmpty()){
+            return Optional.empty();
+        }
+        Match match = matchOptional.get();
+
+        match.setDescription(dto.getDescription());
+        match.setDate(dto.getDate());
+        match.setStartTime(dto.getStartTime());
+        match.setLocation(dto.getLocation());
+
+
+        matchRepository.save(match);
+        return Optional.of(MatchResponseDto.fromEntity(match));
+    }
+
+    public void deleteOne(Long id){
+        matchRepository.deleteById(id);
     }
 
     public List<Match> getAllMatchesWithTeamNamesAndScores() {

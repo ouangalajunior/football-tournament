@@ -13,6 +13,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class MatchResponseDto {
     private Long id;
+    private String description;
     private LocalDate date;
     private LocalTime startTime;
     private String location;
@@ -24,10 +25,11 @@ public class MatchResponseDto {
     private int homeTeamScore;
     private int awayTeamScore;
 
-    public MatchResponseDto(Long id, LocalDate date, LocalTime startTime,
+    public MatchResponseDto(Long id,String description ,LocalDate date, LocalTime startTime,
                             String location, Long homeTeamId, String homeTeamName,
                             Long awayTeamId, String awayTeamName, Long tournamentId, int homeTeamScore, int awayTeamScore) {
         this.id = id;
+        this.description = description;
         this.date = date;
         this.startTime = startTime;
         this.location = location;
@@ -43,6 +45,7 @@ public class MatchResponseDto {
     public static MatchResponseDto fromEntity(Match match){
         return new MatchResponseDto(
                 match.getId(),
+                match.getDescription(),
                 match.getDate(),
                 match.getStartTime(),
                 match.getLocation(),

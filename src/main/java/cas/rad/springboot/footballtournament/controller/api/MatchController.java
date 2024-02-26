@@ -1,16 +1,14 @@
 package cas.rad.springboot.footballtournament.controller.api;
 
-import cas.rad.springboot.footballtournament.dto.MatchCreattionDto;
+import cas.rad.springboot.footballtournament.dto.MatchCreationDto;
 import cas.rad.springboot.footballtournament.dto.MatchResponseDto;
-import cas.rad.springboot.footballtournament.dto.MatchUpdateDto;
-import cas.rad.springboot.footballtournament.entity.Match;
+import cas.rad.springboot.footballtournament.dto.MatchUpdateScoreDto;
 import cas.rad.springboot.footballtournament.service.MatchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +21,7 @@ public class MatchController {
     //Create Match
 
     @PostMapping(value = "", consumes = "application/json", produces = "application/json")
-    public MatchResponseDto create(@RequestBody MatchCreattionDto match){
+    public MatchResponseDto create(@RequestBody MatchCreationDto match){
         return matchService.create(match);
     }
 
@@ -48,8 +46,8 @@ public class MatchController {
     }
 
     @PutMapping("/{id}")
-    public MatchResponseDto updateMatch(@PathVariable Long id, @RequestBody MatchUpdateDto dto) {
-       Optional<MatchResponseDto> match = matchService.update(dto,id);
+    public MatchResponseDto updateMatchScore(@PathVariable Long id, @RequestBody MatchUpdateScoreDto dto) {
+       Optional<MatchResponseDto> match = matchService.updateScore(dto,id);
         return match.get();
     }
 

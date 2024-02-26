@@ -9,38 +9,47 @@
 <body>
 <div class="container">
     <h2>Edit Match</h2>
-    <form action="/tournament/{tournamentId}/matches/edit" method="post" th:action="@{'/tournament/' + ${tournamentId} + '/matches/edit'}">
+    <form action="/tournament/{tournamentId}/matches/edit/{matchId}" method="post" th:action="@{'/tournament/' + ${tournamentId} + '/matches/edit/'+${matchId}}" th:object="${match}">
 
         <input type="hidden" name="tournamentId" th:value="${tournamentId}"/>
         <input type="hidden" name="matchId" th:value="${matchId}"/>
 
 
-        <!-- Display Home and Away Team Names -->
-        <div class="mb-3">
-            <label for="homeTeamName" class="form-label">Home Team:</label>
-            <span id="homeTeamName" th:text="${match.homeTeamName}"></span>
-        </div>
 
-        <div class="mb-3">
-            <label for="awayTeamName" class="form-label">Away Team:</label>
-            <span id="awayTeamName" th:text="${match.awayTeamName}"></span>
-        </div>
 
-        <!-- Home Team Score -->
+        <!-- Location -->
         <div class="mb-3">
-            <label for="homeTeamScore" class="form-label">Home Team Score:</label>
-            <input type="number" id="homeTeamScore" name="homeTeamScore" class="form-control" required>
-        </div>
+            <label for="description" class="form-label">Description:</label>
+            <input type="text" id="description" name="description" class="form-control"  th:field="*{description}" required>
 
-        <!-- Away Team Score -->
-        <div class="mb-3">
-            <label for="awayTeamScore" class="form-label">Away Team Score:</label>
-            <input type="number" id="awayTeamScore" name="awayTeamScore" class="form-control" required>
+
+
+            <br>
+
         </div>
 
 
+
+
+        <!-- Date -->
+        <div class="mb-3">
+            <label for="matchDate" class="form-label">Match Date:</label>
+            <input type="date" id="matchDate" name="matchDate" class="form-control"  th:field="*{date}" required>
+        </div>
+
+        <!-- Start Time -->
+        <div class="mb-3">
+            <label for="startTime" class="form-label">Start Time:</label>
+            <input type="time" id="startTime" name="startTime" class="form-control" th:field="*{startTime}" required>
+        </div>
+
+        <!-- Location -->
+        <div class="mb-3">
+            <label for="location" class="form-label">Location:</label>
+            <input type="text" id="location" name="location" class="form-control" th:field="*{location}" required>
+        </div>
         <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary">Update Match</button>
+        <button type="submit" class="btn btn-primary">Create Match</button>
     </form>
 </div>
 

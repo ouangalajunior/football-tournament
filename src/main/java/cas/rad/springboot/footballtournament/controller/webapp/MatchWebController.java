@@ -4,13 +4,11 @@ import cas.rad.springboot.footballtournament.dto.*;
 import cas.rad.springboot.footballtournament.service.MatchService;
 import cas.rad.springboot.footballtournament.service.TeamService;
 import cas.rad.springboot.footballtournament.service.TournamentService;
-import org.apache.tomcat.util.modeler.BaseAttributeFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/tournament/{tournamentId}/matches")
@@ -30,7 +28,7 @@ public class MatchWebController {
         TournamentResponseDto tournament = tournamentService.getOne(tournamentId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid tournament id: " + tournamentId));
 
-        MatchCreattionDto match = new MatchCreattionDto();
+        MatchCreationDto match = new MatchCreationDto();
         List<TeamResponseDto> teams = tournamentService.getTeamsByTournamentId(tournamentId);
         model.addAttribute("tournament", tournament);
         model.addAttribute("match", match);
@@ -47,14 +45,14 @@ public class MatchWebController {
 
 
     @PostMapping("/create")
-    public String createMatch(@PathVariable("tournamentId") Long tournamentId, @ModelAttribute MatchCreattionDto match) {
+    public String createMatch(@PathVariable("tournamentId") Long tournamentId, @ModelAttribute MatchCreationDto match) {
 
 
         tournamentService.addMatchToTournament(tournamentId, match);
         return "redirect:/tournament/" + tournamentId;
     }
 
-    /*
+
     @GetMapping("/edit/{id}")
     public String showUpdateForm(@PathVariable Long id, @PathVariable("tournamentId") Long tournamentId, Model model){
         // Retrieve the match details
@@ -72,18 +70,24 @@ public class MatchWebController {
     }
 
     @PostMapping("/edit/{id}")
-    public String updateMatch(@ModelAttribute MatchUpdateDto dto, @PathVariable Long id, @PathVariable("tournamentId") Long tournamentId){
+    public String updateMatch(@ModelAttribute ("MatchUpdateDto dto") MatchUpdateDto dto, @PathVariable Long id, @PathVariable("tournamentId") Long tournamentId){
         // Update the match details
-        matchService.update(dto, id);
+        matchService.updateMatch(dto,id);
 
         // Redirect to the tournament details page
         return "redirect:/tournament/" + tournamentId;
     }
 
 
-     */
-    @GetMapping("/edit/{id}")
-    public String showUpdateForm(@PathVariable Long id, @PathVariable("tournamentId") Long tournamentId, Model model){
+
+    @GetMapping("/delete/{id}")
+    public String deleteMatch(@PathVariable Long id, @PathVariable("tournamentId") Long tournamentId) {
+        matchService.deleteOne(id);
+        return "redirect:/tournament/" + tournamentId;
+    }
+
+    @GetMapping("/add-score/{id}")
+    public String showUpdateScoreForm(@PathVariable Long id, @PathVariable("tournamentId") Long tournamentId, Model model){
         MatchResponseDto match = matchService.getOne(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid match id: " + id));
 
@@ -91,16 +95,17 @@ public class MatchWebController {
         model.addAttribute("match", match);
         model.addAttribute("tournamentId", tournamentId);
         model.addAttribute("matchId", id);
-        model.addAttribute("matchUpdateDto", new MatchUpdateDto()); // Ensure the model contains an empty MatchUpdateDto object
+        model.addAttribute("matchUpdateScoreDto", new MatchUpdateScoreDto()); // Ensure the model contains an empty MatchUpdateDto object
 
-        return "match/edit";
+        return "match/score";
     }
 
-    @PostMapping("/edit/{id}")
-    public String updateMatch(@ModelAttribute("matchUpdateDto") MatchUpdateDto dto, @PathVariable Long id, @PathVariable("tournamentId") Long tournamentId){
-        matchService.update(dto, id);
+    @PostMapping("/add-score/{id}")
+    public String updateScoreMatch(@ModelAttribute("matchUpdateScoreDto") MatchUpdateScoreDto dto, @PathVariable Long id, @PathVariable("tournamentId") Long tournamentId){
+        matchService.updateScore(dto, id);
 
         // Redirect to the tournament details page
+       // return "redirect:/tournament/" + tournamentId;
         return "redirect:/tournament/" + tournamentId;
     }
 
