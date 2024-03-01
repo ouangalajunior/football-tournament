@@ -48,7 +48,7 @@ public class TeamService {
 
         team.setName(dto.getName());
         team.setCity(dto.getCity());
-        team.setLogoUrl(dto.getLogoUrl());
+       // team.setLogoUrl(dto.getLogoUrl());
 
         teamRepository.save(team);
 

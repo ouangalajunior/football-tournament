@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Match List</title>
+</head>
+<body>
+<h1>Match List</h1>
+<table border="1">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Date</th>
+    <th>Start Time</th>
+    <th>Location</th>
+    <th>Home Team</th>
+    <th>Away Team</th>
+    <th>Score</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- Iterate over the list of matches -->
+  <tr th:each="match : ${matches}">
+    <td th:text="${match.id}"></td>
+    <td th:text="${match.date}"></td>
+    <td th:text="${match.startTime}"></td>
+    <td th:text="${match.location}"></td>
+    <td th:text="${match.homeTeamName}"></td>
+    <td th:text="${match.awayTeamName}"></td>
+    <td th:text="${match.homeTeamScore} + ' - ' + ${match.awayTeamScore}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

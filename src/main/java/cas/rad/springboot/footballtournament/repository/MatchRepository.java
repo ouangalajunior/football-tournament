@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface MatchRepository extends JpaRepository<Match, Long> {
+    //List<Match> findMatchesByTournamentOrderByDate();
 
     @Query("SELECT m FROM Match m JOIN FETCH m.homeTeam JOIN FETCH m.awayTeam")
     List<Match> findAllMatchesWithTeamNames();

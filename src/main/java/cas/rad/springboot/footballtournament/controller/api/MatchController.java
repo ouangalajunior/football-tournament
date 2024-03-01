@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("match")
+@RequestMapping("matchapi")
 @RequiredArgsConstructor
 public class MatchController {
     private final MatchService matchService;

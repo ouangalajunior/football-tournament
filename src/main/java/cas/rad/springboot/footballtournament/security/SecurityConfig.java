@@ -42,6 +42,7 @@ public class SecurityConfig {
                 .build();
     }
 
+
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails user = User.builder()

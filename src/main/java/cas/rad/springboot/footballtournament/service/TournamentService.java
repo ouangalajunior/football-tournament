@@ -102,7 +102,7 @@ public class TournamentService {
 
         // Convert teams to DTOs
         return teams.stream()
-                .map(team -> new TeamResponseDto(team.getId(), team.getName(), team.getCity(), team.getLogoUrl()))
+                .map(team -> new TeamResponseDto(team.getId(), team.getName(), team.getCity()))
                 .toList();
     }
 

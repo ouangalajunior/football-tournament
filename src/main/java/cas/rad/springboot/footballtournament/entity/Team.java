@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,8 @@ public class Team {
     private Long id;
     private String name;
     private String city;
-    private String logoUrl;
+
+
 
     //Define many-to-many relationship with Tournament
     @ManyToMany(mappedBy = "teams")
@@ -34,12 +36,16 @@ public class Team {
     @OneToMany(mappedBy = "awayTeam")
     private List<Match> awayMatches;
 
-    public Team(String name, String city, String logoUrl) {
+
+    public Team(String name, String city) {
         this.name = name;
         this.city = city;
-        this.logoUrl = logoUrl;
+
+    }
+/*
+
+    public Team(String name, String city, MultipartFile logoUrl) {
     }
 
-
-
+ */
 }

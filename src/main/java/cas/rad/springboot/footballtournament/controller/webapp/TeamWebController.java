@@ -9,7 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Optional;
 
 @Controller
@@ -19,7 +21,7 @@ public class TeamWebController {
  private final TeamService teamService;
 
  //Get all team
-    @GetMapping(value="/index")
+ @GetMapping({"", "/"})
     public String getAllTeams(Model model) {
         model.addAttribute("teams", teamService.getAll());
         return "team/index";
@@ -43,11 +45,16 @@ public class TeamWebController {
         return "team/create";
     }
 
+
     @PostMapping("/create")
     public String createTeam(@ModelAttribute("team") TeamCreationDto team) {
         teamService.create(team);
         return "redirect:/team/index";
     }
+
+
+
+
 
     //Edit team
 
