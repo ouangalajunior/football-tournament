@@ -38,6 +38,7 @@ public class TeamService {
     }
 
 
+    //Update team
     public Optional<TeamResponseDto> update(TeamResponseDto dto, Long id){
         Optional<Team> teamOptional = teamRepository.findById(id);
 
@@ -48,14 +49,13 @@ public class TeamService {
 
         team.setName(dto.getName());
         team.setCity(dto.getCity());
-       // team.setLogoUrl(dto.getLogoUrl());
 
         teamRepository.save(team);
 
         return Optional.of(TeamResponseDto.fromEntity(team));
     }
 
-    //delete one tournament
+    //delete one team
 
     public void deleteOne(Long id){
         teamRepository.deleteById(id);

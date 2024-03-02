@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @RestController
 
-@RequestMapping("tournamentc")
+@RequestMapping("tournament-api")
 @RequiredArgsConstructor
 public class TournamentController {
     private final TournamentService tournamentService;

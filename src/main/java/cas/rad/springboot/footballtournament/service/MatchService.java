@@ -21,21 +21,10 @@ import java.util.Optional;
 public class MatchService {
     private final MatchRepository matchRepository;
     private final TeamRepository teamRepository;
-
-
     private final TournamentRepository tournamentRepository;
 
 
-    //Match creation
-    /*
-    public MatchResponseDto create(MatchCreattionDto dto){
-        Match match = dto.toEntity();
-        matchRepository.save(match);
 
-        return MatchResponseDto.fromEntity(match);
-    }
-
-     */
 
     public MatchResponseDto create(MatchCreationDto dto) {
         // Retrieve home team, away team, and tournament from database using IDs
@@ -70,6 +59,7 @@ public class MatchService {
     public List<MatchResponseDto> getAll(){
         return  matchRepository.findAll().stream().map(MatchResponseDto::fromEntity).toList();
     }
+    // get matches with teams' name
 
     public List<MatchResponseDto> getAllMatchesWithTeamNames() {
         return matchRepository.findAllMatchesWithTeamNames()
@@ -78,7 +68,7 @@ public class MatchService {
                 .toList();
     }
 
-
+//Add score to match
     public Optional<MatchResponseDto> updateScore(MatchUpdateScoreDto dto, Long id){
         Optional<Match> matchOptional= matchRepository.findById(id);
         if(matchOptional.isEmpty()){
@@ -92,6 +82,7 @@ public class MatchService {
         return Optional.of(MatchResponseDto.fromEntity(match));
     }
 
+    //Update match
     public Optional<MatchResponseDto> updateMatch(MatchUpdateDto dto, Long id){
         Optional<Match> matchOptional= matchRepository.findById(id);
         if(matchOptional.isEmpty()){
@@ -109,15 +100,11 @@ public class MatchService {
         return Optional.of(MatchResponseDto.fromEntity(match));
     }
 
+    //delete match
+
     public void deleteOne(Long id){
         matchRepository.deleteById(id);
     }
 
-    public List<Match> getAllMatchesWithTeamNamesAndScores() {
-        return matchRepository.findAllMatchesWithTeamNamesAndScores();
-    }
 
-    public List<Match> getAllPlayedMatchesWithTeamNamesAndScores() {
-        return matchRepository.findAllPlayedMatchesWithTeamNamesAndScores();
-    }
 }

@@ -68,6 +68,7 @@ public class TournamentService {
         tournamentRepository.deleteById(id);
     }
 
+    //Add teams to tournament
     public Optional<TournamentResponseDto> addTeamsToTournament(Long tournamentId, List<Long> teamIds) {
         Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournamentId);
 
@@ -89,6 +90,7 @@ public class TournamentService {
         return Optional.of(TournamentResponseDto.fromEntity(tournament));
     }
 
+    //Get teams by tournament
     public List<TeamResponseDto> getTeamsByTournamentId(Long tournamentId) {
         Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournamentId);
         if (tournamentOptional.isEmpty()) {
@@ -106,6 +108,7 @@ public class TournamentService {
                 .toList();
     }
 
+    //Add match to tournament
     public Optional<TournamentResponseDto> addMatchToTournament(Long tournamentId, MatchCreationDto matchDto) {
         Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournamentId);
 
@@ -136,87 +139,8 @@ public class TournamentService {
     }
 
 
-    //Add match to tournament
-    /*
-    public Optional<TournamentResponseDto> addMatchToTournament(Long tournamentId, MatchCreattionDto matchDto) {
-        Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournamentId);
 
-        if (tournamentOptional.isEmpty()) {
-            return Optional.empty(); // Tournament not found
-        }
-
-        Tournament tournament = tournamentOptional.get();
-
-        // Convert the MatchCreationDto to a Match entity
-        Match match = matchDto.toEntity();
-
-        // Set the tournament for the match
-        match.setTournament(tournament);
-
-        // Save the updated match entity
-        matchRepository.save(match);
-
-        return Optional.of(TournamentResponseDto.fromEntity(tournament));
-    }
-    */
-
-
-    /*
-    public Optional<TournamentResponseDto> addMatchesToTournament(Long tournamentId) {
-        Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournamentId);
-        //Optional<Match> matchtOptional = matchRepository.findById(matchId);
-
-        if (tournamentOptional.isEmpty()
-                //|| matchtOptional.isEmpty())
-        {
-            return Optional.empty(); // Tournament not found
-        }
-
-        Tournament tournament = tournamentOptional.get();
-
-
-        // Fetch match from the database based on teamIds
-       // Match match = matchtOptional.get();
-
-      match.setTournament(tournament);
-
-        // Save the updated tournament entity
-        matchRepository.save(match);
-
-        return Optional.of(TournamentResponseDto.fromEntity(tournament));
-    }
-
-     */
-
-    public  List<MatchResponseDto> getMacthesByTournamentId(Long tournamentId){
-        Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournamentId);
-        if (tournamentOptional.isEmpty()) {
-            throw new EntityNotFoundException("Tournament with ID " + tournamentId + " not found");
-        }
-
-        // Fetch match associated with the tournament
-        Tournament tournament = tournamentOptional.get();
-        List<Match> matches = tournament.getMatches();
-
-
-        // Convert teams to DTOs
-        return matches.stream()
-                .map(match -> new MatchResponseDto(match.getId(),
-                        match.getDescription(),
-                        match.getDate(),
-                        match.getStartTime(),
-                        match.getLocation(),
-                        match.getHomeTeam().getId(),
-                        match.getHomeTeam().getName(),
-                        match.getAwayTeam().getId(),
-                        match.getAwayTeam().getName(),
-                        match.getTournament().getId(),
-                        match.getHomeTeamScore(),
-                        match.getAwayTeamScore()
-                ))
-                .toList();
-
-    }
+    // Remove team from tournament
 
     public void removeTeamFromTournament(Long tournamentId, Long teamId) {
         // Retrieve the tournament entity by its ID

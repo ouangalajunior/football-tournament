@@ -15,13 +15,13 @@ public class TeamResponseDto {
     private String city;
 
 
-   // private List<TournamentResponseDto> tournamentsIds;
+
 
     public static TeamResponseDto fromEntity(Team team){
         return new TeamResponseDto(team.getId(), team.getName(),
                 team.getCity()
 
-                //team.getTournaments().stream().map(TournamentResponseDto::fromEntity).toList()
+
                 );
     }
 }

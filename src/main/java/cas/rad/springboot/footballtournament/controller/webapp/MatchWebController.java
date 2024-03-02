@@ -20,7 +20,7 @@ public class MatchWebController {
 
     //Get all matches
 
-    @GetMapping({"/index"})
+    @GetMapping({"", "/"})
     public String getAllMatch(Model model) {
         List<MatchResponseDto> matches = matchService.getAll();
         model.addAttribute("matches", matches);

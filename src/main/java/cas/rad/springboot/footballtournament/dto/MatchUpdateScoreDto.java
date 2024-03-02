@@ -14,8 +14,7 @@ public class MatchUpdateScoreDto {
 
     private int homeTeamScore;
     private int awayTeamScore;
-    //private Long homeTeamId;
-   // private Long awayTeamId;
+
 
 
 

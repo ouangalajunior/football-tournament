@@ -49,7 +49,7 @@ public class TeamWebController {
     @PostMapping("/create")
     public String createTeam(@ModelAttribute("team") TeamCreationDto team) {
         teamService.create(team);
-        return "redirect:/team/index";
+        return "redirect:/team/";
     }
 
 
@@ -75,7 +75,7 @@ public class TeamWebController {
         //Optional<TournamentResponseDto> tournament = tournamentService.update(dto,id);
         //tournamentDto.setId(id); // Ensure the ID is set
         //tournamentService.update(id);
-        return "redirect:/team/index";
+        return "redirect:/team/";
     }
 
 
@@ -85,7 +85,7 @@ public class TeamWebController {
     @GetMapping("/delete/{id}")
     public String deleteTeam(@PathVariable Long id) {
         teamService.deleteOne(id);
-        return "redirect:/team/index";
+        return "redirect:/team/";
     }
 
 

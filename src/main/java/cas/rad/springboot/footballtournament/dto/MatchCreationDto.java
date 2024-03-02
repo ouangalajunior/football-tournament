@@ -16,7 +16,6 @@ public class MatchCreationDto {
     private LocalDate date;
     private LocalTime startTime;
     private String location;
-
     private Long homeTeamId;
     private Long awayTeamId;
     private Long tournamentId;

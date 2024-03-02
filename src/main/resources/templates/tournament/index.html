@@ -6,63 +6,87 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-<div class="container">
 
-<h1>Tournament List</h1>
-    <div>
-        <a class="btn btn-primary btn-sm"
-           th:href = "@{/tournament/create}">Create Tournament</a>
+<div class="container w-75">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">TMS
+
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/tournament">Tournaments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/match">Match</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/team">Teams</a>
+                    </li>
+
+                </ul>
+            </div>
+            <a class="nav-link" href="/logout"> Logout</a>
+        </div>
+    </nav>
+
+    <div class="container ">
+        <h2 class="my-5 " >Tournaments</h2>
+
     </div>
-<table>
-    <thead>
-    <tr>
+    <nav class="nav justify-content-end mb-3">
 
-        <th>Name</th>
-        <th>Location</th>
+        <a class="nav-link btn" th:href = "@{/tournament/create}">Create a tournament</a>
+        <a class="nav-link btn" th:href = "@{/team/create}">Register Team</a>
 
-        <th>Start Date</th>
-        <th>End Date</th>
-        <th>End Date</th>
+    </nav>
+    <div>
 
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="tournament : ${tournaments}">
+    </div>
+    <div class="card w-75 mb-3 justify-content-center" th:each="tournament : ${tournaments}">
 
-        <td th:text="${tournament.name}"></td>
-        <td th:text="${tournament.location}"></td>
+        <div class="card-body">
+            <h5 class="card-title" th:text="${tournament.name}"> Name:</h5>
 
-        <td th:text="${tournament.startDate}"></td>
-        <td th:text="${tournament.endDate}"></td>
-        <td style="white-space: nowrap">
-            <a class="btn btn-info btn-sm"
-               th:href = "@{/tournament/{id}(id=${tournament.id})}">Details</a>
-            <a class="btn btn-primary btn-sm"
-               th:href = "@{/tournament/edit/{id}(id=${tournament.id})}">Edit</a>
+            <div class="row">
+                <div class="col">
 
-            <a class="btn btn-danger btn-sm"
-               th:href = "@{/tournament/delete/{id}(id=${tournament.id})}"
-               onclick="return confirm('Are you sure, you want to delete this tournament?')">Delete</a>
+                   Location: <p class="card-text" th:text="${tournament.location}"></p>
+
+                </div>
+                <div class="col">
+
+                    From: <p class="card-text" th:text="${tournament.startDate}"> <small class="text-body-secondary"></small> </p>
+                </div>
+                <div class="col">
+                    To: <p class="card-text" th:text="${tournament.endDate}"><small class="text-body-secondary"></small> </p>
+                </div>
+
+            </div>
+            <div class="d-flex justify-content-center mt-5">
+                <a th:href = "@{/tournament/{id}(id=${tournament.id})}" class="btn btn-light">More details</a>
+            </div>
 
 
-        </td>
 
 
-    </tr>
-    </tbody>
-</table>
+        </div>
+    </div>
+
+
+<div>
+    <p class="card-text w-75"><small>Kindly register teams you want to participate in a tournament before adding them to the tournament. You may check if a Team is already registered or no by clicking on Teams menu.</small></p>
+
 </div>
 
-<div class="container">
-    <div>
-        <a class="btn btn-primary btn-sm"
-           th:href = "@{/team/create}">Create Team </a>
-    </div>
 
-    <div>
-        <a class="btn btn-primary btn-sm"
-           th:href = "@{/team/index}">Show all registered team</a>
-    </div>
 </div>
+
+
+
 </body>
 </html>

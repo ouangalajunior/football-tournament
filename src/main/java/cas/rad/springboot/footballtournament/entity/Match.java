@@ -1,12 +1,7 @@
 package cas.rad.springboot.footballtournament.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.sql.Time;
+import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -19,6 +14,7 @@ public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(columnDefinition = "TEXT")
     private String description;
     private LocalDate date;
     private LocalTime startTime;
@@ -39,11 +35,9 @@ public class Match {
     @ManyToOne
     private Tournament tournament;
 
-    //Define relationship with match result
-    @OneToOne(mappedBy = "match", cascade = CascadeType.ALL, orphanRemoval = true)
-    private MatchResult result;
 
-    public Match(String description, LocalDate date, LocalTime startTime, String location, Tournament tournament, Team homeTeam, Team awayTeam) {
+
+    public Match(String description, LocalDate date,  LocalTime startTime,  String location, Tournament tournament, Team homeTeam, Team awayTeam) {
         this.description =description;
         this.date = date;
         this.startTime = startTime;

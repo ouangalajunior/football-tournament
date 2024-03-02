@@ -12,13 +12,6 @@ import java.util.Optional;
 
 @Repository
 public interface TournamentRepository extends JpaRepository<Tournament, Long> {
-   /*
-    @Query("SELECT t FROM Tournament t JOIN FETCH t.teams WHERE t.id = :tournamentId")
-    Optional<Tournament> findByIdWithTeams(@Param("tournamentId") Long tournamentId);
 
-    @Query("SELECT t FROM Tournament t JOIN FETCH t.teams")
-    List<Tournament> findAllWithTeams();
-
-    */
 
 }

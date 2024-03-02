@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("team")
+@RequestMapping("team-api")
 @RequiredArgsConstructor
 public class TeamController {
     private final TeamService teamService;

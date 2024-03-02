@@ -14,9 +14,5 @@ public interface MatchRepository extends JpaRepository<Match, Long> {
     @Query("SELECT m FROM Match m JOIN FETCH m.homeTeam JOIN FETCH m.awayTeam")
     List<Match> findAllMatchesWithTeamNames();
 
-    @Query("SELECT m FROM Match m JOIN FETCH m.homeTeam JOIN FETCH m.awayTeam JOIN FETCH m.result")
-    List<Match> findAllMatchesWithTeamNamesAndScores();
 
-    @Query("SELECT m FROM Match m JOIN FETCH m.homeTeam JOIN FETCH m.awayTeam JOIN FETCH m.result WHERE m.result IS NOT NULL")
-    List<Match> findAllPlayedMatchesWithTeamNamesAndScores();
 }

@@ -25,9 +25,17 @@ public class MatchResponseDto {
     private int homeTeamScore;
     private int awayTeamScore;
 
-    public MatchResponseDto(Long id,String description ,LocalDate date, LocalTime startTime,
-                            String location, Long homeTeamId, String homeTeamName,
-                            Long awayTeamId, String awayTeamName, Long tournamentId, int homeTeamScore, int awayTeamScore) {
+    public MatchResponseDto(Long id,String description,
+                            LocalDate date,
+                            LocalTime startTime,
+                            String location,
+                            Long homeTeamId,
+                            String homeTeamName,
+                            Long awayTeamId,
+                            String awayTeamName,
+                            Long tournamentId,
+                            int homeTeamScore,
+                            int awayTeamScore) {
         this.id = id;
         this.description = description;
         this.date = date;
