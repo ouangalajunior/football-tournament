@@ -75,7 +75,6 @@ public class TournamentService {
         if (tournamentOptional.isEmpty()) {
             return Optional.empty(); // Tournament not found
         }
-
         Tournament tournament = tournamentOptional.get();
 
         // Fetch teams from the database based on teamIds

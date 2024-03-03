@@ -24,7 +24,7 @@
                         <a class="nav-link active" aria-current="page" href="/tournament">Tournaments</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/match">Match</a>
+                        <a class="nav-link" href="/match">Matches</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/team">Teams</a>
@@ -36,33 +36,36 @@
         </div>
     </nav>
 
+    <h4>Match details</h4>
+
+
+    <div class="rounded border"></div>
+
+    <div class="card-body  rounded border w-75 my-3" >
+        <div class="row g-0 bg-light ">
+            <div class="ps-2 col-8 "><p th:text="${match.description}" >Description</p></div>
+            <div class=" ps-2 col-4 "><p th:text="${match.location}" class=" "> Location</p></div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="ps-2 justify-content-center "><p th:text="${match.date}"></p></div>
+                <div class="ps-2 justify-content-center"><p th:text="${match.startTime}"></p></div>
+
+            </div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-8 justify-content-start "><p th:text="${match.homeTeamName}"></p></div>
+                    <div class="col-4 justify-content-end"><p th:text="${match.homeTeamScore}"></p></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-8 justify-content-start "><p th:text="${match.awayTeamName}"></p></div>
+                    <div class="col-4 justify-content-end"><p th:text="${match.awayTeamScore}"></p></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
-<h1>Match List</h1>
-<table border="1">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Date</th>
-        <th>Start Time</th>
-        <th>Location</th>
-        <th>Home Team</th>
-        <th>Away Team</th>
-        <th>Score</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Iterate over the list of matches -->
-    <tr >
-        <td th:text="${match.id}"></td>
-        <td th:text="${match.date}"></td>
-        <td th:text="${match.startTime}"></td>
-        <td th:text="${match.location}"></td>
-        <td th:text="${match.homeTeamName}"></td>
-        <td th:text="${match.awayTeamName}"></td>
-        <td th:text="${match.homeTeamScore} + ' - ' + ${match.awayTeamScore}"></td>
-    </tr>
-    </tbody>
-</table>
 </body>
 </html>

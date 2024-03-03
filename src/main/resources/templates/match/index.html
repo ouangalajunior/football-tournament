@@ -24,7 +24,7 @@
             <a class="nav-link active" aria-current="page" href="/tournament">Tournaments</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/match">Match</a>
+            <a class="nav-link" href="/match">Matches</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/team">Teams</a>
@@ -40,14 +40,14 @@
   <div class="rounded border"></div>
 
   <div class="card-body  rounded border w-75 my-3" th:each="match : ${matches}">
-    <div class="row bg-light ">
-      <div class="col-8 justify-content-start  "><p th:text="${match.description}"></p></div>
-      <div class="col-4 justify-content-end "><p th:text="${match.location}"></p></div>
+    <div class="row g-0 bg-light ">
+      <div class="ps-2 col-8 "><p th:text="${match.description}" >Description</p></div>
+      <div class=" ps-2 col-4 "><p th:text="${match.location}" class=" "> Location</p></div>
     </div>
     <div class="row">
       <div class="col-4">
-        <div class="justify-content-center "><p th:text="${match.date}"></p></div>
-        <div class="justify-content-center"><p th:text="${match.startTime}"></p></div>
+        <div class="ps-2 justify-content-center "><p th:text="${match.date}"></p></div>
+        <div class="ps-2 justify-content-center"><p th:text="${match.startTime}"></p></div>
 
       </div>
       <div class="col-8">
@@ -59,6 +59,13 @@
         <div class="row">
           <div class="col-8 justify-content-start "><p th:text="${match.awayTeamName}"></p></div>
           <div class="col-4 justify-content-end"><p th:text="${match.awayTeamScore}"></p></div>
+        </div>
+        <div class="row">
+        <div class="justify-content-end my-2 ">
+          <a class="btn btn-light btn-sm "
+             th:href = "@{/match/{id}(id=${match.id})}">More Details</a>
+        </div>
+
         </div>
       </div>
     </div>
